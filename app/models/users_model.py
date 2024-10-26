@@ -16,7 +16,7 @@ class Users(BaseModel):
                 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
                 CREATE TABLE IF NOT EXISTS users (
                     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-                    username TEXT NOT NULL,
+                    username TEXT NOT NULL UNIQUE,
                     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
                 )
             """)
@@ -28,4 +28,10 @@ class UserCreate(BaseModel):
 
 class UserLogin(BaseModel):
     username: str
+
+class UserOperation(BaseModel):
+    id: str
+    
+class UserDownload(BaseModel):
+    id: str
     
