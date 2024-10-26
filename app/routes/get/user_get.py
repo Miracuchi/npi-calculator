@@ -7,13 +7,13 @@ import datetime
 import os
 from uuid import UUID
 from fastapi.responses import JSONResponse
-
 from dotenv import load_dotenv
 load_dotenv()
+
 SECRET_KEY = os.getenv("SECRET_KEY")  # Changez ceci par une clé sécurisée
 ALGORITHM = "HS256"  # Algorithme utilisé pour le jeton
 EXPIRE_MINUTES = 30  # Durée d'expiration du jeton
-print('sk',SECRET_KEY)
+
 router = APIRouter()
 
 def create_jwt(user_id: UUID):

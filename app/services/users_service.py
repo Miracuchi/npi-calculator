@@ -1,23 +1,8 @@
-# from .connection import get_connection
-
-# def create_user_table():
-#     conn = get_connection()
-#     with conn.cursor() as cursor:
-#         cursor.execute("""
-#             CREATE EXTENSION IF NOT EXISTS "pgcrypto";
-#             CREATE TABLE IF NOT EXISTS users (
-#                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-#                 username TEXT NOT NULL,
-#                 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-#             )
-#         """)
-#         conn.commit()
-#     conn.close()
 # app/services/user_service.py
 from uuid import uuid4
 from datetime import datetime
 from app.db.connection import get_connection
-from app.models.users_model import Users
+from app.models.users_model import UserCreate, Users
 class UserService:
     def __init__(self):
         self.users = []  # Une liste pour stocker les utilisateurs en mémoire
@@ -35,7 +20,6 @@ class UserService:
             raise ValueError("L'utilisateur existe déjà")
         user_id = str(uuid4())
         created_at = datetime.now().isoformat()
-        print("hello")
         # Enregistrement de l'utilisateur dans la base de données
         conn = get_connection()
         with conn.cursor() as cursor:
@@ -44,7 +28,7 @@ class UserService:
                 VALUES (%s, %s, %s)
             """, (user_id, username, created_at))
             conn.commit()
-
+            print("HELLO ZORLD")
         # Optionnel : Ajouter l'utilisateur à la liste en mémoire
         self.users.append(Users(id=user_id, username=username, created_at=created_at))
 
@@ -71,10 +55,18 @@ class UserService:
            row = cursor.fetchone()
            if row:
                 return Users(id=row[0], username=row[1], created_at=row[2].isoformat() if isinstance(row[2], datetime) else row[2] )
-           return print('NO')
+           
         
     def authenticate_user(self, username:str) -> Users:
         user = self.get_user_by_username(username)
         if user is None:
             print('Id incorrect')
         return user
+    
+    def get_username_by_id(user_id: str) -> UserCreate:
+        conn = get_connection()
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT username FROM users WHERE id = %s", (user_id,))
+            row = cursor.fetchone()
+            if row:
+                return UserCreate(username=row[0])
