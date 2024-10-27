@@ -1,20 +1,33 @@
 version: "3.8"
 
 services:
-  web:
-    build: .
+  backend:
+    build: ./backend
     command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
     ports:
-      - "8000:8000"
+      - 8000:8000
     volumes:
-      - .:/code
+      - ./backend/app:/code/app
     environment:
       - DATABASE_URL="postgresql://postgres:postgres@db:5432/npi_calculator"
       - DB_HOST=db
+      - CHOKIDAR_USEPOLLING=true
     depends_on:
       - db
     env_file:
-      - ./.env
+      - ./backend/.env
+
+  frontend:
+    build: ./frontend
+    command: npm run dev
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
 
   db:
     image: postgres:15

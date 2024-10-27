@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 
-@router.post("/users/", response_model=Users)
+@router.post("/create_user/", response_model=Users)
 async def create_user(user: UserCreate):
     user_service = UserService()  # Créer une instance de UserService
     return user_service.create_user(user.username)

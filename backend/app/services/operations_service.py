@@ -18,7 +18,7 @@ class OperationService(BaseModel):
     def evaluate_npi(self, expression: str):
         stack = []
         tokens = expression.split()
-
+        print(expression)
         for token in tokens:
             # Vérifier si le token est un nombre (peut être négatif)
             try:
@@ -47,7 +47,7 @@ class OperationService(BaseModel):
 
         if len(stack) != 1:
             raise HTTPException(status_code=400, detail="Expression invalide.")
-
+        print("stack", stack)
         return stack[0]
     
     @staticmethod

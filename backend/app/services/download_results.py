@@ -8,9 +8,9 @@ from ..models.users_model import UserDownload
 from fastapi.responses import FileResponse
 
 
-async def download_results(user: UserDownload):
-    operations = OperationService.operations_of_user(user.id)
-    username = UserService.get_username_by_id(user.id)
+async def download_results(id: str):
+    operations = OperationService.operations_of_user(id)
+    username = UserService.get_username_by_id(id)
 
     file_path = f"results_{str(username)}.csv"
 

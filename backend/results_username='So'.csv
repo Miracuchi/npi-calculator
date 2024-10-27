@@ -1,0 +1,50 @@
+Expression,Result
+2 8 *,16.0
+5 8 *,40.0
+2 2 55 + *,114.0
+expression='2 2 5 + *',14.0
+expression='2 2 5 + *',14.0
+expression='2 2 5 + *',14.0
+expression='2 2 5 + *',14.0
+expression='5 8 /',0.625
+expression='-5 5 + 9 +',9.0
+expression='-5 5 +',0.0
+expression='555 666 /',0.8333333333333334
+expression='8 9 /',0.8888888888888888
+expression='8 9 +',17.0
+expression='22222222 888 /',25025.024774774774
+expression='5 8 + 5 /',2.6
+expression='5 8 +',13.0
+expression='5 8 /',0.625
+expression='2 2 5 + *',14.0
+expression='2 2 +',4.0
+expression='2 2 5 + *',14.0
+expression='22333 9 *',200997.0
+expression='8 5 +',13.0
+expression='9.8 1 +',10.8
+expression='9.8 1 +',10.8
+expression='9.8 1 +',10.8
+expression='2 2 3 -2.5 + + -',-0.5
+expression='0 3 /',0.0
+expression='1 2 +',3.0
+expression='1 2 +',3.0
+expression='1 2 +',3.0
+expression='1 2 +',3.0
+expression='0 1 +',1.0
+expression='1 2 +',3.0
+expression='1 2 +',3.0
+expression='0 1 +',1.0
+expression='43 4 /',10.75
+expression='1 2 /',0.5
+expression='2 3 6 + -',-7.0
+expression='2 2 3 45 + + -',-48.0
+expression='2 2 3 5            + + -',-8.0
+expression='2 2 3 5  + + -',-8.0
+expression='2 2 3 5  + + -',-8.0
+expression='2 2 3 5 + + -',-8.0
+expression='2 2 3 5 + + -',-8.0
+expression='2 2 3 2 + + -',-5.0
+expression='2 2 3 2 + + -',-5.0
+expression='2 2 3 2 + + -',-5.0
+expression='2 2 3 -2 + + -',-1.0
+expression='2 2 3 -2 + + -',-1.0
