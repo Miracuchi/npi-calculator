@@ -1,5 +1,6 @@
 # app/main.py
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # from .db.operations import  create_operations_table
 # from .db.users import create_user_table
@@ -17,6 +18,14 @@ app = FastAPI(
     debug=settings.DEBUG_MODE
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Remplace par les origines autorisées
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.on_event("startup")
 async def startup_event():
     Users.create_user_table()
@@ -24,7 +33,7 @@ async def startup_event():
 
 @app.get("/")
 async def root():
-    return {"message": "Bienvenue sur mon API! Hello World Megatron"}
+    return {"message": "Bienvenue sur mon API! Hello World Medsdsdsdsdaron"}
 
 
 app.include_router(main_router)

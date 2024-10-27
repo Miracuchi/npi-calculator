@@ -1,1 +1,42 @@
 venv/
+# Ignorer les fichiers et dossiers de cache de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignorer l'environnement virtuel
+venv/
+env/
+.env
+
+# Ignorer les fichiers de configuration de l'IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer les fichiers de test
+tests/
+test_*.py
+
+# Ignorer les fichiers de documentation
+*.md
+
+# Ignorer les fichiers de données
+*.sqlite3
+*.db
+
+# Ignorer les fichiers temporaires
+tmp/
+temp/
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers de versionnement
+.git/
+.gitignore

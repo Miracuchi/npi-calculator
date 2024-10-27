@@ -16,21 +16,22 @@ EXPIRE_MINUTES = 30  # Durée d'expiration du jeton
 
 router = APIRouter()
 
-def create_jwt(user_id: UUID):
+def create_jwt(user_id: str):
     expiration = datetime.datetime.utcnow() + datetime.timedelta(minutes=EXPIRE_MINUTES)
     to_encode = {"sub": str(user_id), "exp": expiration}
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-@router.get("/login/", response_model=Users)
+@router.post("/login/", response_model=Users)
 async def login(user: UserLogin):
     user_service = UserService()
 
     authenticated_user = user_service.authenticate_user(user.username)
 
     if authenticated_user:
-        token = create_jwt(authenticated_user.id)
-        response = JSONResponse(content={"id": str(authenticated_user.id)})
-        response.set_cookie(key="Authorization", value=token, httponly=True, secure=True)
+        token = create_jwt(str(authenticated_user.id))
+        response = JSONResponse(content={"id": str(authenticated_user.id), "token": token, "username": authenticated_user.username})
+        response.set_cookie(key="Authorization", value=token, httponly=True, samesite='None', secure=False)
+        print("Cookie set with value:", token) 
         return response
     
     raise HTTPException(status_code=401, detail="Invalid credentials")
